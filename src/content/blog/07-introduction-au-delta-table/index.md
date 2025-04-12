@@ -1,10 +1,12 @@
 ---
 title: Introduction au Delta Table
-description: Découvrez les bases des Delta Tables, une solution de stockage de données robuste et performante pour les environnements Big Data.
-pubDate: 2024-07-25
+date: 2024-07-24
+summary: This blog post introduces Delta Tables, a powerful feature of Delta Lake.
+tags: [Delta Lake, Data Engineering]
 ---
 
 # Introduction au Delta Table
+
 
 Dans le monde en constante évolution du Big Data, la gestion efficace et fiable des données est cruciale. Les Delta Tables, basées sur le projet open-source Delta Lake, offrent une solution puissante pour relever ces défis. Cet article vous propose une introduction aux Delta Tables, en explorant leurs concepts clés et leurs avantages.
 
