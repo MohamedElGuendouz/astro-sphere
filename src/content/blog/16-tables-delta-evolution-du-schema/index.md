@@ -29,8 +29,7 @@ Delta Lake supports several modes of schema evolution, each catering to differen
 This is the default and most common mode of schema evolution. When writing new data to a Delta Table, Delta Lake automatically detects and incorporates schema changes from the incoming data. If new columns are present, they are added to the table schema.  This behavior significantly simplifies ETL processes where source data schemas might evolve over time.
 
 **Example (PySpark):**
-```
-python
+```python
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 from delta.tables import DeltaTable
 from pyspark.sql.functions import col
@@ -63,8 +62,7 @@ print(delta_table.toDF().schema)
 # Output will now include the 'age' column
 ```
 **Example (Scala):**
-```
-scala
+```scala
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
 import io.delta.tables._
@@ -105,22 +103,19 @@ println(deltaTable.toDF.schema)
 You can explicitly add new columns to a Delta Table using the `ALTER TABLE ADD COLUMN` SQL command or the Delta API.  This provides more control when you want to add a column without writing new data.
 
 **Example (SQL):**
-```
-sql
+```sql
 -- Assuming you are using a Spark SQL environment
 ALTER TABLE delta.`/path/to/delta/users` ADD COLUMNS (age INT);
 ```
 **Example (PySpark):**
-```
-python
+```python
 from delta.tables import DeltaTable
 
 delta_table = DeltaTable.forPath(spark, "/path/to/delta/users")
 delta_table.addColumn("age", "INT") # Requires DeltaTable 3.0+ for programmatic column addition.
 ```
 **Example (Scala):**
-```
-scala
+```scala
 import io.delta.tables._
 
 val deltaTable = DeltaTable.forPath(spark, "/path/to/delta/users")
@@ -137,8 +132,7 @@ Changing the data type of an existing column is a more complex operation and req
 * **Impact on Downstream Processes:**  Any applications or queries that read from the table will need to be updated to handle the new data type.
 
 **Example (PySpark):**
-```
-python
+```python
 from delta.tables import DeltaTable
 
 # Change the data type of the 'age' column from INT to LONG (if initially created as INT)
@@ -159,8 +153,7 @@ df = delta_table.toDF().withColumn("age", col("age").cast("LONG"))
 )
 ```
 **Example (Scala):**
-```
-scala
+```scala
 import io.delta.tables._
 import org.apache.spark.sql.functions.col
 
@@ -193,8 +186,7 @@ Schema evolution in Delta Lake is primarily controlled through write options. Th
 * **Partitioning:** While not directly related to schema evolution, be aware that changes to partition columns require careful planning and might involve recreating the table.
 
 **Example (PySpark):**
-```
-python
+```python
 # Enable schema merging when writing data
 (df.write.format("delta")
     .mode("overwrite") # Use "append" or "overwrite" as appropriate.
@@ -230,8 +222,7 @@ While Delta Lake simplifies schema evolution, issues can still arise:
 * **Data Quality Issues:** Carefully examine the data after a schema change to ensure data quality and handle any unexpected values or inconsistencies caused by the change.
 
 **Example (Error Handling - PySpark):**
-```
-python
+```python
 try:
     (df.write.format("delta")
        .mode("append")

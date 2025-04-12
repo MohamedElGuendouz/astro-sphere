@@ -42,8 +42,7 @@ Managed tables are suitable when:
 *   The data's lifecycle is tied to the table's lifecycle; when the table is no longer needed, the data should be deleted as well.
 
 **Example (PySpark):**
-```
-python
+```python
 from pyspark.sql.functions import *
 
 # Create a managed table
@@ -76,8 +75,7 @@ External tables are preferred when:
 *   You want to separate the data's lifecycle from the table's lifecycle, allowing you to drop the table without affecting the underlying data.
 
 **Example (PySpark):**
-```
-python
+```python
 # Define the storage location
 path = "/path/to/external/users"
 

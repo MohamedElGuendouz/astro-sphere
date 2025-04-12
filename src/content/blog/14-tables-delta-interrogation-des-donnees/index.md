@@ -16,8 +16,7 @@ Delta Tables offer multiple ways to access and query your data, catering to diff
 ### 1. Using SQL SELECT Statements
 
 For users familiar with SQL, querying Delta Tables using `SELECT` statements is straightforward. Delta Lake integrates seamlessly with query engines like Apache Spark SQL, allowing you to use standard SQL syntax.
-```
-scala
+```scala
 // Scala example using Spark SQL
 import org.apache.spark.sql.SparkSession
 
@@ -41,8 +40,7 @@ df.show()
 ### 2. Using the Delta API
 
 The Delta API provides a programmatic way to interact with Delta Tables, offering more flexibility and control over your queries. You can use the API in languages like Scala and Python (with PySpark).
-```
-scala
+```scala
 // Scala example using Delta API
 import io.delta.tables._
 import org.apache.spark.sql.SparkSession
@@ -78,8 +76,7 @@ filtered_df.show()
 ### 3. Querying Specific Partitions
 
 If your Delta Table is partitioned, you can optimize queries by targeting specific partitions. This reduces the amount of data scanned, improving performance.
-```
-scala
+```scala
 // Scala example querying specific partitions
 import org.apache.spark.sql.SparkSession
 
@@ -111,8 +108,7 @@ df.show()
 Delta Lake's time travel feature allows you to query previous versions of your data, providing valuable capabilities for auditing, debugging, and historical analysis.
 
 #### Querying by Version
-```
-scala
+```scala
 // Scala example querying by version
 import org.apache.spark.sql.SparkSession
 
@@ -138,8 +134,7 @@ df = spark.read.format("delta") \
 df.show()
 ```
 #### Querying by Timestamp
-```
-scala
+```scala
 // Scala example querying by timestamp
 import org.apache.spark.sql.SparkSession
 
@@ -171,29 +166,25 @@ Delta Lake provides various options to fine-tune your queries and optimize perfo
 ### 1. Filtering Data
 
 Use `WHERE` clauses to filter data based on specific conditions, reducing the amount of data processed.
-```
-sql
+```sql
 SELECT * FROM my_delta_table WHERE column_b = 'specific_value' AND column_c > 10
 ```
 ### 2. Aggregating Data
 
 Use `GROUP BY` clauses and aggregate functions (e.g., `SUM`, `AVG`, `COUNT`) to summarize and analyze data.
-```
-sql
+```sql
 SELECT column_d, COUNT(*) FROM my_delta_table GROUP BY column_d
 ```
 ### 3. Ordering Data
 
 Use `ORDER BY` clauses to sort the results based on one or more columns.
-```
-sql
+```sql
 SELECT * FROM my_delta_table ORDER BY column_e DESC
 ```
 ### 4. Joining with Other Tables
 
 You can join Delta Tables with other tables or data sources using standard SQL `JOIN` operations.
-```
-sql
+```sql
 SELECT t1.*, t2.other_column
 FROM my_delta_table t1
 JOIN another_table t2 ON t1.join_column = t2.join_column

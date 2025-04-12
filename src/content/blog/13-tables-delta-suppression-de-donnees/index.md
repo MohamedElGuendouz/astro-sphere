@@ -16,13 +16,11 @@ Delta Lake provides robust and efficient mechanisms for deleting data from Delta
 The most straightforward way to delete data is by using SQL `DELETE` statements, familiar to anyone with SQL experience.
 
 **Syntax:**
-```
-sql
+```sql
 DELETE FROM table_name WHERE condition;
 ```
 **Example (PySpark):**
-```
-python
+```python
 from pyspark.sql import SparkSession
 
 # Initialize Spark session
@@ -32,8 +30,7 @@ spark = SparkSession.builder.appName("DeltaDeleteExample").getOrCreate()
 spark.sql("DELETE FROM users WHERE age < 18")
 ```
 **Example (Scala):**
-```
-scala
+```scala
 import org.apache.spark.sql.SparkSession
 
 // Initialize Spark session
@@ -49,8 +46,7 @@ This will delete all rows from the `users` table where the `age` column is less 
 For more programmatic control and integration within data pipelines, you can use the Delta API.
 
 **Example (PySpark):**
-```
-python
+```python
 from delta.tables import DeltaTable
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import expr
@@ -68,8 +64,7 @@ delta_table.delete(condition=expr("age < 18"))
 delta_table.delete("age < 18")
 ```
 **Example (Scala):**
-```
-scala
+```scala
 import io.delta.tables._
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.expr
@@ -93,8 +88,7 @@ These examples achieve the same result as the SQL `DELETE` statement but offer m
 If your Delta Table is partitioned, you can efficiently delete data from specific partitions.
 
 **Example (PySpark):**
-```
-python
+```python
 from delta.tables import DeltaTable
 from pyspark.sql import SparkSession
 
@@ -108,8 +102,7 @@ delta_table = DeltaTable.forPath(spark, "/path/to/partitioned/table")
 delta_table.delete("country = 'USA'")
 ```
 **Example (Scala):**
-```
-scala
+```scala
 import io.delta.tables._
 import org.apache.spark.sql.SparkSession
 

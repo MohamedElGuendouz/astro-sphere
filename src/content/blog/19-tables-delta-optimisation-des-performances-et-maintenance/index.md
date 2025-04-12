@@ -16,8 +16,7 @@ Delta Tables provide a robust and reliable foundation for data lakes, but achiev
 **Partitioning** divides a table into smaller, more manageable segments based on the values of one or more columns. This allows queries to read only the relevant partitions, significantly reducing I/O and improving performance.
 
 **Z-Ordering** is a technique that co-locates related information within the same set of files.  It sorts data based on multiple columns, improving data skipping effectiveness, especially for range and equality predicates on those columns.
-```
-python
+```python
 # PySpark Example: Partitioning and Z-Ordering
 
 from delta.tables import DeltaTable
@@ -45,8 +44,7 @@ deltaTable.optimize().zOrder("user_id", "product_id").executeCompaction()
 **Data Skipping** leverages metadata stored with Delta Tables to skip entire data files that are irrelevant to a query, based on statistics like minimum and maximum values for columns.
 
 **Bloom Filters** are a space-efficient probabilistic data structure used to test whether an element is a member of a set. In Delta Tables, they can be used to quickly determine if a file might contain values matching a filter predicate (typically equality checks on high-cardinality columns), further enhancing data skipping.
-```
-python
+```python
 # PySpark Example: Bloom Filters
 
 # Enable Bloom filters during table creation
@@ -73,8 +71,7 @@ result = spark.sql("SELECT * FROM my_delta_table WHERE id = 12345")
 Delta Lake works best with moderately sized files (typically 128MB to 1GB).  A large number of small files can lead to increased metadata overhead, slower query planning, and reduced data skipping effectiveness. Conversely, very large files might hinder parallelism.
 
 **Compaction** (using the `OPTIMIZE` command) merges small files into larger ones, improving read performance.
-```
-python
+```python
 # PySpark Example: Compaction
 
 from delta.tables import DeltaTable
@@ -91,8 +88,7 @@ deltaTable.optimize().executeCompaction()
 ### 4. Caching Strategies
 
 Caching frequently accessed data in memory or on local disk can dramatically improve query performance.  Spark provides several caching mechanisms that can be used with Delta Tables.
-```
-python
+```python
 # PySpark Example: Caching
 
 df = spark.read.format("delta").load("/path/to/delta/table")
@@ -120,8 +116,7 @@ Writing efficient queries is crucial for maximizing performance.  Consider these
 *   **Column Pruning:** Select only the columns needed by your query.  Avoid using `SELECT *` if possible.
 *   **Predicate Optimization:** Use specific and selective filters.  Avoid overly broad or complex predicates that can hinder data skipping.
 *   **Join Optimization:**  Optimize join order and use appropriate join strategies (e.g., broadcast hash join for small tables, shuffle sort merge join for large tables).
-```
-python
+```python
 # PySpark Example: Query Optimization
 
 # Good: Filter pushdown and column pruning
@@ -157,8 +152,7 @@ Use tools like Spark UI, Delta Lake history (accessible via the `DESCRIBE HISTOR
 Delta Lake's transaction log stores the history of all changes to a table, enabling Time Travel. However, retaining excessive history can increase metadata storage costs and impact performance.
 
 Implement data retention policies to automatically remove older versions of the table history.
-```
-python
+```python
 # PySpark Example: Setting Retention Policies
 
 # Set history retention to 30 days and data retention to 7 days
@@ -202,8 +196,7 @@ Small files can negatively impact performance. Common causes of small files incl
 *   **Right-size writes:** Batch data before writing to Delta Tables.
 *   **Use `spark.databricks.delta.optimizeWrite.enabled=true`:** This property enables automatic compaction of small files during writes, reducing the need for separate compaction jobs.
 *   **Repartition data before writing:** If small files are due to insufficient parallelism during writes, repartition the data using `repartition` or `coalesce` before writing to the Delta Table.
-```
-python
+```python
     # PySpark Example: Repartitioning before Write
     df_repartitioned = df.repartition(100) # Adjust the number of partitions based on cluster size and data volume.
     (df_repartitioned.write.format("delta").mode("append").save("/path/to/delta/table"))
@@ -218,16 +211,14 @@ Delta Lake stores metadata about the table, including the transaction log.  For 
 **Best Practices:**
 
 *   **Checkpointing:** Delta Lake periodically consolidates the transaction log into checkpoint files, improving read performance for metadata. Ensure that checkpointing is enabled and occurring at an appropriate interval (controlled by the `spark.databricks.delta.checkpointInterval` property). The default is every 10 commits, but you may need to adjust this based on the frequency of writes and the performance of metadata operations.
-```
-python
+```python
     #Example to manually trigger a checkpoint (though it usually occurs automatically):
     deltaTable = DeltaTable.forPath(spark, "/path/to/delta/table")
     deltaTable.generate("symlink_format_manifest")
     
 ```
 *   **Z-Ordering on Metadata Columns:** For tables with extremely large numbers of files, consider Z-Ordering by file metadata (e.g., `_metadata.file_modification_time`) to improve the performance of operations that scan metadata, such as `VACUUM` or listing files.  This requires enabling the feature:
-```
-sql
+```sql
     -- Spark SQL example to enable Z-Ordering on metadata columns:
     ALTER TABLE my_delta_table SET TBLPROPERTIES (delta.dataSkippingNumIndexedCols = 1)
     

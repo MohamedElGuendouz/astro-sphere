@@ -28,21 +28,18 @@ Delta Lake provides flexible methods for querying historical data, catering to v
 Each transaction in a Delta Table is associated with a unique, monotonically increasing version number. This provides a precise way to access a specific snapshot of the data.
 
 **SQL Syntax:**
-```
-sql
+```sql
 SELECT * FROM delta.`/path/to/delta/table` VERSION AS OF 1;
 ```
 **PySpark Example:**
-```
-python
+```python
 from pyspark.sql.functions import expr
 
 df = spark.read.format("delta").option("versionAsOf", 1).load("/path/to/delta/table")
 df.display()
 ```
 **Scala Example:**
-```
-scala
+```scala
 import io.delta.tables._
 
 val deltaTable = DeltaTable.forPath(spark, "/path/to/delta/table")
@@ -56,19 +53,16 @@ historicalDF.show()
 Alternatively, you can retrieve the table's state as it existed at a specific point in time using a timestamp. Delta Lake will automatically identify the version closest to the provided timestamp.
 
 **SQL Syntax:**
-```
-sql
+```sql
 SELECT * FROM delta.`/path/to/delta/table` TIMESTAMP AS OF '2023-10-27T10:00:00.000Z';
 ```
 **PySpark Example:**
-```
-python
+```python
 df = spark.read.format("delta").option("timestampAsOf", "2023-10-27T10:00:00.000Z").load("/path/to/delta/table")
 df.display()
 ```
 **Scala Example:**
-```
-scala
+```scala
 val historicalDF = spark.read.format("delta").option("timestampAsOf", "2023-10-27T10:00:00.000Z").load("/path/to/delta/table")
 historicalDF.show()
 ```
@@ -89,8 +83,7 @@ To maximize the benefits of Time Travel and ensure efficient queries, consider t
 *   **History Management:** Delta Lake retains table history indefinitely by default. For tables with frequent updates, consider setting a history retention policy to manage storage costs. You can configure this using table properties.
 
     **SQL Example:**
-```
-sql
+```sql
     ALTER TABLE delta.`/path/to/delta/table` SET TBLPROPERTIES ('delta.logRetentionDuration' = 'interval 30 days');
     
 ```

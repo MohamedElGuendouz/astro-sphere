@@ -18,16 +18,14 @@ There are several ways to update data within Delta Tables, catering to different
 For simple, targeted updates, SQL `UPDATE` statements offer a straightforward approach.
 
 **Example (using Spark SQL):**
-```
-scala
+```scala
 -- Update the 'status' of orders with 'order_id' 123 to 'shipped'
 UPDATE orders
 SET status = 'shipped'
 WHERE order_id = 123
 ```
 **Example (using PySpark SQL):**
-```
-python
+```python
 spark.sql("""
     UPDATE orders
     SET status = 'shipped'
@@ -48,8 +46,7 @@ For more complex updates or when integrating with data pipelines, the Delta API 
 The `update` method allows for conditional updates based on an expression.
 
 **Example (using PySpark):**
-```
-python
+```python
 from delta.tables import DeltaTable
 
 delta_table = DeltaTable.forPath(spark, "/path/to/delta/table")
@@ -60,8 +57,7 @@ delta_table.update(
 )
 ```
 **Example (using Scala):**
-```
-scala
+```scala
 import io.delta.tables._
 
 val deltaTable = DeltaTable.forPath("/path/to/delta/table")
@@ -81,8 +77,7 @@ deltaTable.update(
 The `merge` operation enables powerful upsert (update if exists, insert if not exists) and complex conditional update scenarios.
 
 **Example (PySpark - Upsert):**
-```
-python
+```python
 from delta.tables import DeltaTable
 
 delta_table = DeltaTable.forPath(spark, "/path/to/target/table")
@@ -100,8 +95,7 @@ delta_table.alias("target").merge(
 ).execute()
 ```
 **Example (Scala - Upsert):**
-```
-scala
+```scala
 import io.delta.tables._
 import org.apache.spark.sql.functions._
 
@@ -134,8 +128,7 @@ deltaTable.as("target").merge(
 For partitioned tables, you can target updates to specific partitions to improve performance. However, Delta Lake automatically optimizes updates, so manual partition filtering is often unnecessary.
 
 **Example (PySpark):**
-```
-python
+```python
 # Not generally recommended as Delta Lake handles this efficiently.  
 # Included for illustrative purposes.
 from delta.tables import DeltaTable
@@ -182,8 +175,7 @@ delta_table = DeltaTable.forPath(spark, "/path/to/partitioned/table")
 The update methods and best practices apply equally to both managed and external Delta Tables. The key difference lies in data location and lifecycle management, which are not directly relevant to the update process itself.
 
 **Updating a Managed Table (PySpark):**
-```
-python
+```python
 from delta.tables import DeltaTable
 
 delta_table = DeltaTable.forPath(spark, "/path/to/managed/delta/table")  # Path in the metastore
@@ -194,8 +186,7 @@ delta_table.update(
 )
 ```
 **Updating an External Table (PySpark):**
-```
-python
+```python
 from delta.tables import DeltaTable
 
 delta_table = DeltaTable.forPath(spark, "/path/to/external/delta/table")  # External storage location

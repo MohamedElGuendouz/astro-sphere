@@ -29,8 +29,7 @@ Min/Max statistics are a cornerstone of data skipping in Delta Lake. For each da
 4.  If there is an overlap, the file is read and further filtering is performed on the data within the file.
 
 **Example (PySpark):**
-```
-python
+```python
 from pyspark.sql.functions import col
 
 # Assuming a Delta Table named "my_table" with a column "value"
@@ -71,8 +70,7 @@ Bloom filters provide a probabilistic way to check if a value might be present i
 Bloom filters are not enabled by default and need to be explicitly configured when creating or altering a Delta Table.
 
 **Example (PySpark):**
-```
-python
+```python
 # Enable Bloom filters for the "id" column
 spark.sql("""
 ALTER TABLE my_table
@@ -103,8 +101,7 @@ Data partitioning is a technique that physically divides a table's data into mul
 2.  Queries with filters on the partition columns can directly target the directories corresponding to the filter values, bypassing other directories entirely.
 
 **Example (PySpark):**
-```
-python
+```python
 # Assuming a table partitioned by the "date" column
 spark.sql("""
 CREATE TABLE my_table (id STRING, value INT, date DATE)

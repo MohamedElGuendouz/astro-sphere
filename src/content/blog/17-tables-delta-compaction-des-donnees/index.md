@@ -62,8 +62,7 @@ The transaction log also enables time travel to versions before or after compact
 Here are code examples demonstrating data compaction using both PySpark and Scala:
 
 ### PySpark
-```
-python
+```python
 from pyspark.sql import SparkSession
 
 # Initialize Spark Session
@@ -94,8 +93,7 @@ deltaTable.optimize().zOrderBy("id").executeCompaction() # Compaction with Z-Ord
 spark.stop()
 ```
 ### Scala
-```
-scala
+```scala
 import org.apache.spark.sql.SparkSession
 import io.delta.tables._
 
@@ -145,8 +143,7 @@ For most use cases, scheduling regular compaction is crucial. This can be achiev
 * **Cron Jobs:** For simpler setups, a cron job can be used to trigger a script that runs the compaction command. However, this approach lacks the monitoring and retry mechanisms of dedicated scheduling tools.
 
 **Example Airflow DAG (Python):**
-```
-python
+```python
 from airflow import DAG
 from airflow.operators.spark_submit_operator import SparkSubmitOperator
 from datetime import datetime

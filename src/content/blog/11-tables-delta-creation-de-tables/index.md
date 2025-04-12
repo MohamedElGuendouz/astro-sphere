@@ -18,8 +18,7 @@ Delta Tables can be created in several ways, depending on your data source and r
 You can easily create a Delta Table from existing data in formats like Parquet or CSV.
 
 #### PySpark Example:
-```
-python
+```python
 from pyspark.sql.functions import *
 from delta.tables import *
 
@@ -34,8 +33,7 @@ df = spark.read.format("csv").option("header", "true").load("path/to/your/data.c
 df.write.format("delta").save("path/to/your/delta_table")
 ```
 #### Scala Example:
-```
-scala
+```scala
 import org.apache.spark.sql.SparkSession
 import io.delta.tables._
 
@@ -54,8 +52,7 @@ df.write.format("delta").save("path/to/your/delta_table")
 For better control and data type enforcement, it's recommended to define a schema when creating a Delta Table.
 
 #### PySpark Example:
-```
-python
+```python
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
 schema = StructType([
@@ -68,8 +65,7 @@ df = spark.read.format("csv").option("header", "true").schema(schema).load("path
 df.write.format("delta").save("path/to/your/delta_table")
 ```
 #### Scala Example:
-```
-scala
+```scala
 import org.apache.spark.sql.types.{StructType, StructField, StringType, IntegerType}
 
 val schema = StructType(Array(
@@ -86,8 +82,7 @@ df.write.format("delta").save("path/to/your/delta_table")
 You can create an empty Delta Table with a predefined schema.
 
 #### PySpark Example:
-```
-python
+```python
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
 schema = StructType([
@@ -101,8 +96,7 @@ df = spark.createDataFrame(empty_rdd, schema)
 df.write.format("delta").save("path/to/your/empty_delta_table")
 ```
 #### Scala Example:
-```
-scala
+```scala
 import org.apache.spark.sql.types.{StructType, StructField, StringType, IntegerType}
 
 val schema = StructType(Array(
@@ -120,8 +114,7 @@ df.write.format("delta").save("path/to/your/empty_delta_table")
 You can also create Delta Tables using SQL syntax.
 
 #### PySpark Example:
-```
-python
+```python
 spark.sql("""
     CREATE TABLE IF NOT EXISTS my_delta_table (
         id INT,
@@ -131,8 +124,7 @@ spark.sql("""
 """)
 ```
 #### Scala Example:
-```
-scala
+```scala
 spark.sql("""
     CREATE TABLE IF NOT EXISTS my_delta_table (
         id INT,
@@ -150,8 +142,7 @@ When creating Delta Tables, you can specify various options and configurations t
 Table properties allow you to set metadata associated with the table.
 
 #### PySpark/Scala Example:
-```
-python
+```python
 df.write.format("delta") \
     .option("delta.autoOptimize.optimizeWrite", "true") \
     .option("delta.autoOptimize.autoCompact", "true") \
@@ -164,8 +155,7 @@ These properties enable automatic compaction and optimization of write operation
 Partitioning divides the table into directories based on the values in one or more columns, improving query performance for filtered queries.
 
 #### PySpark/Scala Example:
-```
-python
+```python
 df.write.format("delta") \
     .partitionBy("date_column") \
     .save("path/to/your/partitioned_delta_table")
@@ -177,8 +167,7 @@ Choose partition columns judiciously, considering cardinality and query patterns
 Z-Ordering colocates related information within the same set of files, improving data skipping and query performance.
 
 #### PySpark/Scala Example:
-```
-python
+```python
 df.write.format("delta") \
     .partitionBy("date_column") \
     .option("dataChange", "false") \
@@ -201,8 +190,7 @@ Z-Order on columns frequently used in query filters.
 Specifies the storage location for the Delta Table.  For managed tables, this is optional, and Delta Lake will manage the location.  For external tables, this is required.
 
 #### PySpark/Scala Example (External Table):
-```
-python
+```python
 df.write.format("delta") \
     .option("path", "hdfs://path/to/your/external_location") \
     .save("path/to/your/delta_table")  # The "table" is just metadata in the metastore
@@ -212,8 +200,7 @@ df.write.format("delta") \
 Delta Lake enforces the schema by default, preventing data corruption.  You can disable this (not recommended) with the `mergeSchema` option.
 
 #### PySpark/Scala Example:
-```
-python
+```python
 df.write.format("delta") \
     .option("mergeSchema", "true")  \
     .save("path/to/your/delta_table")
@@ -229,8 +216,7 @@ df.write.format("delta") \
 If your input data has a schema that might evolve, you can use `overwriteSchema = True` to update the table schema during creation.
 
 #### PySpark/Scala Example:
-```
-python
+```python
 df.write.format("delta") \
     .option("overwriteSchema", "true") \
     .mode("overwrite") \

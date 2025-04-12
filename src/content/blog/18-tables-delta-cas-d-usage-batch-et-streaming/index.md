@@ -18,8 +18,7 @@ Delta Tables excel in batch processing scenarios, providing reliability and perf
 Delta Tables can serve as the foundation for a data warehouse, providing a robust and scalable storage layer.  They simplify ETL processes by offering transactional capabilities and schema evolution.
 
 **Example (PySpark):**
-```
-python
+```python
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
@@ -51,8 +50,7 @@ delta_events.groupBy("event_type").count().show()
 Delta Tables enhance data lake management by providing features like schema enforcement and constraints, improving data quality and consistency.
 
 **Example (Scala with Spark):**
-```
-scala
+```scala
 import io.delta.tables._
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
@@ -92,8 +90,7 @@ invalidData.write.format("delta").mode("append").save("/path/to/delta/products")
 Delta Tables simplify feature engineering and model training data preparation by enabling consistent and versioned datasets.
 
 **Example (PySpark):**
-```
-python
+```python
 from pyspark.sql.functions import *
 from pyspark.ml.feature import StringIndexer
 from pyspark.ml.linalg import Vectors
@@ -130,8 +127,7 @@ feature_data.write.format("delta").mode("overwrite").save("/path/to/delta/prepar
 Delta Tables' time travel capabilities make it easy to analyze historical data and generate reports based on specific versions of the data.
 
 **Example (SQL with Spark):**
-```
-sql
+```sql
 -- Query data as of a specific version
 SELECT * FROM delta.`/path/to/delta/table` VERSION AS OF 5;
 
@@ -156,8 +152,7 @@ Delta Tables integrate seamlessly with streaming processing frameworks, enabling
 Delta Tables can be used as both a sink and a source in real-time data pipelines, providing a reliable and consistent storage layer for streaming data.
 
 **Example (PySpark Structured Streaming):**
-```
-python
+```python
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
@@ -193,8 +188,7 @@ query = processed_stream.writeStream.format("delta") \
 Delta Tables simplify CDC implementation by providing a history of changes and enabling efficient synchronization with other systems.
 
 **Example (PySpark):**
-```
-python
+```python
 # Assume you have two Delta Tables: source_table and destination_table
 # source_table contains the latest data, and destination_table needs to be synchronized
 
@@ -224,8 +218,7 @@ deltaTable.alias("destination") \
 Delta Tables can be used to create and maintain materialized views of streaming data, providing pre-aggregated results for faster querying.
 
 **Example (PySpark Structured Streaming):**
-```
-python
+```python
 # Assume you have a streaming DataFrame named 'input_stream'
 
 # Define aggregations
@@ -248,8 +241,7 @@ query = aggregated_data.writeStream.format("delta") \
 Delta Tables provide a robust platform for real-time analytics and monitoring of streaming data.
 
 **Example (PySpark Structured Streaming with dashboard integration):**
-```
-python
+```python
 # ... (Read and process streaming data as shown in previous examples)
 
 # Write processed data to a Delta Table
