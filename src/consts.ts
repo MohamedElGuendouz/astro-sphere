@@ -3,32 +3,32 @@ import type { Site, Page, Links, Socials } from "@types"
 // Global
 export const SITE: Site = {
   TITLE: "EL GUENDOUZ",
-  DESCRIPTION: "Welcome to Astro Sphere, a portfolio and blog for designers and developers.",
-  AUTHOR: "Mark Horn",
+  DESCRIPTION: "Data Engineer et Architecte spécialisé dans les environnements Cloud.",
+  AUTHOR: "Mohamed El Guendouz",
 }
 
 // Work Page
 export const WORK: Page = {
   TITLE: "Parcours",
-  DESCRIPTION: "Places I have worked.",
+  DESCRIPTION: "Lieux où j'ai travaillé.",
 }
 
 // Blog Page
 export const BLOG: Page = {
   TITLE: "Articles",
-  DESCRIPTION: "Writing on topics I am passionate about.",
+  DESCRIPTION: "Écrits sur des sujets qui me passionnent.",
 }
 
 // Projects Page 
 export const PROJECTS: Page = {
   TITLE: "Réalisations",
-  DESCRIPTION: "Recent projects I have worked on.",
+  DESCRIPTION: "Projets récents sur lesquels j'ai travaillé.",
 }
 
 // Search Page
 export const SEARCH: Page = {
-  TITLE: "Search",
-  DESCRIPTION: "Search all posts and projects by keyword.",
+  TITLE: "Recherche",
+  DESCRIPTION: "Rechercher tous les articles et réalisations par mot-clé.",
 }
 
 // Links
