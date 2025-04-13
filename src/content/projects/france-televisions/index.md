@@ -16,5 +16,5 @@ Déploiement d'une architecture data cloud pour le ciblage personnalisé dans le
 *   Réalisation de POCs pour valider la scalabilité et la robustesse de l'architecture
 *   Création d'un référentiel utilisateur structuré en Golden Tables (refined) par type de données, intégrant les dimensions comportementales et d'identité des utilisateurs de la plateforme France Télévisions.
 
-## Pile technique
+## Stack technique
 GCP, Spark, Delta Lake, Terraform, Cloud Composer, IAM, Pub/Sub
