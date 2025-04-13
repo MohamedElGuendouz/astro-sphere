@@ -3,7 +3,7 @@ title: "Classification des environnements applicatifs par machine learning semi-
 description: "Classification des environnements applicatifs"
 date: 2024-01-01
 summary: "Un bref résumé du projet Banque PSA Finance."
-tags: ["data", "machine learning", "Python"]
+tags: ["Data Science", "Data Engineering", "Data Architecture", "Machine Learning", "Python"]
 ---
 
 # Project Details

@@ -2,7 +2,7 @@
 title: "Plongée dans les journaux de transactions des tables Delta et les propriétés ACID"
 date: 2024-07-26
 summary: "Une exploration technique des journaux de transactions des tables Delta, détaillant leur structure, leur rôle dans la garantie des propriétés ACID, le contrôle de la concurrence et les implications sur les performances."
-tags: ["Delta Lake", "Journal de transactions", "ACID", "Concurrence", "Ingénierie des données"]
+tags: ["Delta Lake", "Data Engineering"]
 ---
 
 
@@ -39,7 +39,7 @@ Voici un exemple simplifié d'une entrée de journal de transactions (0.json) :
     "minWriterVersion": 2
   },
   "metadata": {
-    "schemaString": "{\"type\":\"struct\",\"fields\":[{\"name\":\"id\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}},{\"name\":\"value\",\"type\":\"string\",\"nullable\":true,\"metadata\":{}}]}",
+    "schemaString": "{"type":"struct","fields":[{"name":"id","type":"integer","nullable":false,"metadata":{}},{"name":"value","type":"string","nullable":true,"metadata":{}}]}",
     "partitionColumns": [],
     "configuration": {},
     "createdTime": 1678886400000

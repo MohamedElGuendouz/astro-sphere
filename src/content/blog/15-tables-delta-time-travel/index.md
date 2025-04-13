@@ -2,7 +2,7 @@
 title: "Delta Tables: Unveiling the Power of Time Travel"
 date: 2024-07-27
 summary: "Explore Delta Lake's Time Travel feature for data auditing, experiment reproducibility, and seamless rollbacks, with practical examples and best practices."
-tags: ["Delta Lake", "Time Travel", "Data Versioning", "Data Engineering", "Auditing", "Data Recovery"]
+tags: ["Delta Lake", "Data Engineering", "Auditing"]
 ---
 # Delta Tables: Unveiling the Power of Time Travel
 

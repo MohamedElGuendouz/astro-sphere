@@ -2,7 +2,7 @@
 title: Mastering Schema Evolution in Delta Tables
 date: 2024-07-26
 summary: Learn how to seamlessly manage schema changes in your Delta Tables with our comprehensive guide to schema evolution.
-tags: [Delta Lake, Schema Evolution, Data Engineering, Data Architecture]
+tags: [Delta Lake, Data Engineering, Data Architecture]
 ---
 
 # Mastering Schema Evolution in Delta Tables

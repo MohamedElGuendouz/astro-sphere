@@ -2,7 +2,7 @@
 title: "Delta Tables: Use Cases in Batch and Streaming Data Processing"
 date: 2024-07-26
 summary: "Explore real-world use cases of Delta Tables in both batch and streaming data processing, with practical examples and code snippets."
-tags: ["Delta Lake", "Batch Processing", "Streaming Processing", "Data Engineering"]
+tags: ["Delta Lake", "Data Engineering"]
 ---
 
 # Delta Tables: Use Cases in Batch and Streaming Data Processing

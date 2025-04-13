@@ -2,7 +2,7 @@
 title: "Creating Delta Tables: A Comprehensive Guide"
 date: 2024-07-26
 summary: "Learn how to create Delta Tables effectively with this comprehensive guide, covering various methods, configurations, and best practices."
-tags: ["Delta Lake", "Data Engineering", "Spark", "PySpark", "Scala"]
+tags: ["Delta Lake", "Data Engineering", "PySpark", "Scala"]
 ---
 
 # Creating Delta Tables: A Comprehensive Guide

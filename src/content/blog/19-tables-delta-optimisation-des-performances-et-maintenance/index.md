@@ -2,7 +2,7 @@
 title: "Optimizing and Maintaining Delta Tables for Peak Performance"
 date: 2024-07-26
 summary: "Learn how to optimize Delta Table performance and ensure long-term health through effective maintenance strategies."
-tags: ["Delta Lake", "Performance Optimization", "Table Maintenance", "Data Engineering"]
+tags: ["Delta Lake", "Data Engineering"]
 ---
 
 # Optimizing and Maintaining Delta Tables for Peak Performance

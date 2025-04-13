@@ -3,7 +3,7 @@ title: "Référentiel utilisateur & Vue client unifiée 2.0"
 description: "Déploiement d'une architecture data cloud pour le ciblage personnalisé dans le cadre des JO 2024."
 date: 2024-01-01
 summary: "Un bref résumé du projet France Télévisions."
-tags: ["data", "cloud", "GCP"]
+tags: ["Delta Lake", "Infrastructure as Code", "Airflow", "Cloud Streaming", "PySpark", "Data Engineering", "Data Architecture"]
 ---
 
 # Détails du projet

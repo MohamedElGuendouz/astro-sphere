@@ -2,7 +2,7 @@
 title: "Delta Tables: Mastering Data Compaction for Peak Performance"
 date: 2024-07-27
 summary: "A comprehensive guide to data compaction (OPTIMIZE) in Delta Tables, covering its benefits, operation, best practices, and troubleshooting."
-tags: ["Delta Lake", "Data Compaction", "Optimize", "Performance Tuning"]
+tags: ["Delta Lake", "Data Engineering"]
 ---
 
 # Delta Tables: Mastering Data Compaction for Peak Performance

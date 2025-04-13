@@ -2,7 +2,7 @@
 title: "Deleting Data from Delta Tables: A Comprehensive Guide"
 date: 2024-07-26
 summary: "Learn how to efficiently and reliably delete data from Delta Tables using various methods, including SQL and Delta API, with practical examples and best practices."
-tags: ["Delta Lake", "Data Deletion", "Data Engineering"]
+tags: ["Delta Lake", "Data Engineering"]
 ---
 
 # Deleting Data from Delta Tables: A Comprehensive Guide

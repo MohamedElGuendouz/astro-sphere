@@ -2,7 +2,7 @@
 title: "Querying Delta Tables: A Comprehensive Guide"
 date: 2024-07-26
 summary: "Master querying Delta Tables with this comprehensive guide, covering SQL, Delta API, time travel, best practices, and performance optimization."
-tags: ["Delta Lake", "Querying", "Data Engineering", "Data Analysis"]
+tags: ["Delta Lake","Data Engineering", "Data Analysis"]
 ---
 
 # Querying Delta Tables: A Comprehensive Guide

@@ -2,7 +2,7 @@
 title: "Updating Delta Tables: A Comprehensive Guide"
 date: 2024-07-26
 summary: "Master the art of updating Delta Tables with this comprehensive guide for data engineers. Learn various methods, best practices, and optimization techniques."
-tags: ["Delta Lake", "Data Engineering", "Updates", "Data Manipulation"]
+tags: ["Delta Lake", "Data Engineering"]
 ---
 
 # Updating Delta Tables: A Comprehensive Guide

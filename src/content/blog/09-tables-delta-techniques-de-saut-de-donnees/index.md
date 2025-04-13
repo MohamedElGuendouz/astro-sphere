@@ -2,7 +2,7 @@
 title: "Optimizing Delta Table Queries with Data Skipping Techniques"
 date: 2024-07-27
 summary: "A deep dive into data skipping techniques in Delta Tables, exploring how they accelerate query performance by intelligently filtering out irrelevant data."
-tags: ["Delta Lake", "Data Skipping", "Query Optimization", "Performance Tuning"]
+tags: ["Delta Lake", "Data Engineering"]
 ---
 
 # Mastering Data Skipping in Delta Tables: A Comprehensive Guide
