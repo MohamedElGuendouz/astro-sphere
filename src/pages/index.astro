@@ -115,7 +115,7 @@ const stack = [
         </button>
         <div class="p-5 text-center">
           <p class="animated text-lg md:text-xl lg:text-2xl font-semibold opacity-75">
-            Bonjour, je suis
+            <span id="greeting"></span>, bienvenue !
           </p>
           <p class="animated text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white">
             El Guendouz Mohamed
@@ -319,7 +319,20 @@ const stack = [
 
 <script>
   const themeButton = document.getElementById("main-theme-button");
+  const greeting = document.getElementById("greeting");
+
+  function updateGreeting() {
+    if (document.documentElement.classList.contains("dark")) {
+      greeting.textContent = "Bonsoir";
+    } else {
+      greeting.textContent = "Bonjour";
+    }
+  }
+
+  updateGreeting(); // Call on page load
+
   themeButton?.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
+    updateGreeting(); // Call on theme change
   });
 </script>
