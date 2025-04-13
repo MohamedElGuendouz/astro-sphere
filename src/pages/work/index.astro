@@ -1,59 +1,154 @@
 ---
-import { getCollection } from "astro:content"
-import PageLayout from "@layouts/PageLayout.astro"
-import TopLayout from "@layouts/TopLayout.astro"
-import BottomLayout from "@layouts/BottomLayout.astro"
-import { WORK } from "@consts"
+import { getEntry } from 'astro:content';
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import { WORK } from "@consts";
 
-const collection = await getCollection("work")
+const entry = await getEntry('work', 'index');
 
-collection.sort((a, b) => new Date(b.data.dateStart).getTime() - new Date(a.data.dateStart).getTime())
+if (!entry) {
+    // Handle the case where the entry is not found
+    throw new Error("Work index page not found");
+}
 
-const work = await Promise.all(
-  collection.map(async (item) => {
-    const { Content } = await item.render()
-    return { ...item, Content }
-  })
-)
+const { data } = entry;
 
 function formatWorkDate(input: Date | string) {
-  if (typeof input === "string") return input
+    if (typeof input === "string") return input
 
-  const month = input.toLocaleDateString("en-US", {
-    month: "short",
-  })
+    const month = input.toLocaleDateString("en-US", {
+        month: "short",
+    })
 
-  const year = new Date(input).getFullYear()
-  return `${month} ${year}`
+    const year = new Date(input).getFullYear()
+    return `${month} ${year}`
 }
 ---
 
 <PageLayout title={WORK.TITLE} description={WORK.DESCRIPTION}>
-  <TopLayout>
-    <div class="animate page-heading">
-      {WORK.TITLE}
-    </div>
-  </TopLayout>
-  <BottomLayout>
-    <ul>
-      { 
-        work.map((entry) => (
-          <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0 last-of-type:border-none">
-            <div class="text-sm uppercase mb-4">
-              {formatWorkDate(entry.data.dateStart)} - {formatWorkDate(entry.data.dateEnd)}
-            </div>
-            <div class="text-black dark:text-white font-semibold">
-              {entry.data.company}
-            </div>
-            <div class="text-sm font-semibold">
-              {entry.data.role}
-            </div>
-            <article class="prose dark:prose-invert">
-              <entry.Content />
-            </article>
-          </li>
-        ))
-      }
-    </ul>
-  </BottomLayout>
+    <TopLayout>
+        <div class="animate page-heading">
+            {WORK.TITLE}
+        </div>
+    </TopLayout>
+    <BottomLayout>
+        <ul class="space-y-4">
+            <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0 last-of-type:border-none">
+                <div class="text-sm uppercase mb-4">
+                    Dec 2022 - Aujourd'hui
+                </div>
+                <div class="text-black dark:text-white font-semibold">
+                    France Télévisions – Paris, France
+                </div>
+                <div class="text-sm font-semibold">
+                    Tech Lead Data Engineer
+                </div>
+                <article class="prose dark:prose-invert">
+                    Déploiement d'une architecture data cloud pour le ciblage personnalisé dans le cadre des JO 2024.
+                    <ul>
+                        <li>Conception d'un pipeline de données scalable sur GCP (Spark, Delta Lake, Cloud Composer)</li>
+                        <li>Infrastructure as code avec Terraform</li>
+                        <li>Automatisation des traitements, réduction des coûts d'exploitation</li>
+                        <li>Encadrement technique d'une équipe de 8 consultants en méthodologie Scrum</li>
+                        <li>Réalisation de POCs pour valider la scalabilité et la robustesse de l'architecture</li>
+                        <li>Création d'un référentiel utilisateur structuré en Golden Tables (refined) par type de données, intégrant les dimensions comportementales et d'identité des utilisateurs de la plateforme France Télévisions.</li>
+                    </ul>
+                    Stack technique : GCP, Spark, Delta Lake, Terraform, Cloud Composer, IAM, Pub/Sub
+                </article>
+            </li>
+
+            <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0 last-of-type:border-none">
+                <div class="text-sm uppercase mb-4">
+                    Oct 2022 – Dec 2022
+                </div>
+                <div class="text-black dark:text-white font-semibold">
+                    Céline – LVMH, Paris, France
+                </div>
+                <div class="text-sm font-semibold">
+                    Data Engineer
+                </div>
+                <article class="prose dark:prose-invert">
+                    Migration d'un entrepôt de données Oracle vers GCP pour répondre à des enjeux de scalabilité et de maintenabilité.
+                    <ul>
+                        <li>Développement de scripts d'ingestion de données fiables</li>
+                        <li>Déploiement d'une infrastructure cloud via Terraform</li>
+                        <li>Transformation et orchestration via SQLx et Dataform</li>
+                        <li>Technique de validation de l'architecture cible</li>
+                    </ul>
+                    Stack technique : Oracle, GCP (GCS, IAM), Terraform, SQLx, Dataform
+                </article>
+            </li>
+
+            <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0 last-of-type:border-none">
+                <div class="text-sm uppercase mb-4">
+                    Oct 2021 – Oct 2022
+                </div>
+                <div class="text-black dark:text-white font-semibold">
+                    Stellantis – Paris, France
+                </div>
+                <div class="text-sm font-semibold">
+                    Data Engineer
+                </div>
+                <article class="prose dark:prose-invert">
+                    Création d'une plateforme d'estimation de la valeur des véhicules en LLD, utilisée pour la vente et les campagnes marketing.
+                    <ul>
+                        <li>Conception et développement de pipelines Spark pour le calcul de valeur marchande</li>
+                        <li>Animation des rituels Agile avec les équipes produit</li>
+                        <li>Coordination technique et recueil des besoins métier</li>
+                        <li>Contribution à l'architecture data et supervision des développements</li>
+                    </ul>
+                    Stack technique : Spark, Java, Kafka, Hive, Yarn, Ranger, Kibana, Elasticsearch
+                </article>
+            </li>
+
+            <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0 last-of-type:border-none">
+                <div class="text-sm uppercase mb-4">
+                    Oct 2018 – Oct 2021
+                </div>
+                <div class="text-black dark:text-white font-semibold">
+                    Banque PSA Finance – Sochaux, France
+                </div>
+                <div class="text-sm font-semibold">
+                    Data Scientist / Data Engineer
+                </div>
+                <article class="prose dark:prose-invert">
+                    Classification des environnements applicatifs
+                    <ul>
+                        <li>Conception d'un moteur de classification basé sur des règles métiers et du machine learning</li>
+                        <li>Suivi du cycle de vie de plus de 200 environnements applicatifs</li>
+                        <li>Création d'un référentiel de Golden Data</li>
+                    </ul>
+                    Architecture d'entreprise (TOGAF)
+                    <ul>
+                        <li>Cartographie complète du SI de la banque</li>
+                        <li>Modélisation via Archimate</li>
+                        <li>Constitution du référentiel dans Sparx Enterprise Architect</li>
+                    </ul>
+                    Stack technique : Python, Hive, Pandas, Scikit-learn, Jupyter, NLTK, Archimate, Sparx EA
+                </article>
+            </li>
+
+            <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0 last-of-type:border-none">
+                <div class="text-sm uppercase mb-4">
+                    Mars 2018 – Juin 2018
+                </div>
+                <div class="text-black dark:text-white font-semibold">
+                    CIDCO – Rimouski, Canada
+                </div>
+                <div class="text-sm font-semibold">
+                    Stagiaire Data Scientist
+                </div>
+                <article class="prose dark:prose-invert">
+                    Projet R&D sur l'optimisation de la trajectoire d'une sonde marine autonome en conditions difficiles.
+                    <ul>
+                        <li>Développement de scripts embarqués en C++ pour traitement temps réel</li>
+                        <li>Déploiement sur Raspberry Pi et tests fonctionnels</li>
+                        <li>Intégration dans le système embarqué propriétaire du centre</li>
+                    </ul>
+                    Stack technique : C++, Raspberry Pi, GitHub, XML, capteurs GPS
+                </article>
+            </li>
+        </ul>
+    </BottomLayout>
 </PageLayout>
