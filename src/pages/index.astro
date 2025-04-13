@@ -1,107 +1,145 @@
 --- 
-import { getCollection } from "astro:content"
-import PageLayout from "@layouts/PageLayout.astro"
-import ArrowCard from "@components/ArrowCard"
-import StackCard from "@components/StackCard.astro"
-import { SITE, SOCIALS } from "@consts"
-import TwinklingStars from "@components/TwinklingStars.astro"
-import MeteorShower from "@components/MeteorShower.astro"
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import ArrowCard from "@components/ArrowCard";
+import StackCard from "@components/StackCard.astro";
+import { SITE, SOCIALS } from "@consts";
+import TwinklingStars from "@components/TwinklingStars.astro";
+import MeteorShower from "@components/MeteorShower.astro";
+import { cn } from "@lib/utils";
 
 const posts = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
+  .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0,3)
+  .slice(0, 3);
 
 const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
+  .filter((project) => !project.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0,3)
+  .slice(0, 3);
 
 const stack = [
   {
     text: "Astro",
     icon: "astro",
-    href: "https://astro.build"
+    href: "https://astro.build",
   },
   {
     text: "Javascript",
     icon: "javascript",
-    href: "https://www.javascript.com"
+    href: "https://www.javascript.com",
   },
   {
     text: "Typescript",
     icon: "typescript",
-    href: "https://www.typescriptlang.org"
+    href: "https://www.typescriptlang.org",
   },
-  { 
-    text: "Tailwind", 
-    icon: "tailwind", 
-    href: "https://tailwindcss.com" 
+  {
+    text: "Tailwind",
+    icon: "tailwind",
+    href: "https://tailwindcss.com",
   },
   {
     text: "PySpark",
     icon: "pyspark",
-    href: "https://spark.apache.org/docs/latest/api/python/"
+    href: "https://spark.apache.org/docs/latest/api/python/",
   },
-]
- 
+];
+
 ---
 
 <PageLayout title="Home" description={SITE.DESCRIPTION}>
-
   <!-- Light Mode: Particles -->
-  <div class='absolute inset-0 block dark:hidden'>
-    <div id='particles1' class='fixed inset-0'></div>
-    <div id='particles2' class='fixed inset-0'></div>
-    <div id='particles3' class='fixed inset-0'></div>
+  <div class="absolute inset-0 block dark:hidden">
+    <div id="particles1" class="fixed inset-0"></div>
+    <div id="particles2" class="fixed inset-0"></div>
+    <div id="particles3" class="fixed inset-0"></div>
   </div>
 
   <!-- Dark Theme: Stars -->
-  <div class='absolute inset-0 bg-black hidden dark:block'>
-    <div id='stars1' class='fixed inset-0'></div>
-    <div id='stars2' class='fixed inset-0'></div>
-    <div id='stars3' class='fixed inset-0'></div>
+  <div class="absolute inset-0 bg-black hidden dark:block">
+    <div id="stars1" class="fixed inset-0"></div>
+    <div id="stars2" class="fixed inset-0"></div>
+    <div id="stars3" class="fixed inset-0"></div>
   </div>
 
   <!-- Dark Theme: Twinkling Stars / Metors -->
   <div id="galaxy" class="fixed inset-0">
     <div class="hidden dark:block">
-      <TwinklingStars/>
-      <MeteorShower/>
+      <TwinklingStars />
+      <MeteorShower />
     </div>
   </div>
 
   <script is:inline src="/js/bg.js"></script>
-  
+
   <!-- HERO -->
   <section class="relative h-screen w-full">
-    <div id="planetcont" class='animate absolute inset-0 top-1/4 overflow-hidden'>
-      <div id="crescent" class='absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] min-h-[100vh] aspect-square rounded-full p-[1px] bg-gradient-to-b from-black/25 dark:from-white/75 from-0% to-transparent to-5%'>
-        <div id="planet" class='w-full h-full bg-white dark:bg-black rounded-full p-[1px] overflow-hidden flex justify-center'>
-          <div id="blur" class='w-full h-20 rounded-full bg-neutral-900/25 dark:bg-white/25 blur-3xl'/>
+    <div id="planetcont" class="animate absolute inset-0 top-1/4 overflow-hidden">
+      <div
+        id="crescent"
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] min-h-[100vh] aspect-square rounded-full p-[1px] bg-gradient-to-b from-black/25 dark:from-white/75 from-0% to-transparent to-5%"
+      >
+        <div
+          id="planet"
+          class="w-full h-full bg-white dark:bg-black rounded-full p-[1px] overflow-hidden flex justify-center"
+        >
+          <div
+            id="blur"
+            class="w-full h-20 rounded-full bg-neutral-900/25 dark:bg-white/25 blur-3xl"
+          />
         </div>
       </div>
     </div>
     <div class="animate absolute h-full w-full flex items-center justify-center">
-      <div class='relative w-full h-full flex items-center justify-center'>
-        <div class='p-5 text-center'>
-          <p class='animated text-lg md:text-xl lg:text-2xl font-semibold opacity-75'>        
+      <div class="relative w-full h-full flex items-center justify-center flex-col">
+        {/* Changed to flex-col */}
+        <button
+          id="main-theme-button"
+          aria-label="Toggle light and dark theme"
+          class={cn(
+            "size-24 rounded-full p-2 items-center justify-center",
+            "bg-transparent hover:bg-black/5 dark:hover:bg-white/20",
+            "stroke-current hover:stroke-black hover:dark:stroke-white",
+            "border border-black/10 dark:border-white/25",
+            "transition-colors duration-300 ease-in-out",
+            "m-10" // Increased margin
+          )}
+        >
+          <svg class="size-full block dark:hidden">
+            <use href="/ui.svg#sun"></use>
+          </svg>
+          <svg class="size-full hidden dark:block">
+            <use href="/ui.svg#moon"></use>
+          </svg>
+        </button>
+        <div class="p-5 text-center">
+          <p class="animated text-lg md:text-xl lg:text-2xl font-semibold opacity-75">
             Bonjour, je suis
           </p>
-          <p class='animated text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white'>
+          <p class="animated text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white">
             El Guendouz Mohamed
           </p>
-          <p class='animated text-sm md:text-base lg:text-lg opacity-75'>
+          <p class="animated text-sm md:text-base lg:text-lg opacity-75">
             Data Engineer et Architecte spécialisé dans les environnements Cloud.
           </p>
-          <div id="ctaButtons" class='animated flex flex-wrap gap-4 justify-center mt-5'>
-            <a href='/blog' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
+          <div id="ctaButtons" class="animated flex flex-wrap gap-4 justify-center mt-5">
+            <a
+              href="/blog"
+              class="py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend"
+            >
               Lire mes articles
             </a>
-            <a href='/work' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+            <a
+              href="/work"
+              class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
+            >
               Mon parcours
             </a>
-            <a href='/projects' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+            <a
+              href="/projects"
+              class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
+            >
               Mes réalisations
             </a>
           </div>
@@ -112,17 +150,16 @@ const stack = [
 
   <div class="relative bg-white dark:bg-black">
     <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
-
-      <!-- Tech Stack Section -->
+      {/* Tech Stack Section */}
       <section class="animate">
-        <!--
+        {/*
         <div class="space-y-4">
           <p class="font-semibold text-black dark:text-white">
             Built with
           </p>
           <div class="flex flex-wrap items-center gap-2 mt-5">
             {stack.map(item => (
-              <StackCard 
+              <StackCard
                 text={item.text}
                 icon={item.icon}
                 href={item.href}
@@ -138,54 +175,73 @@ const stack = [
             </a>
           </div>
         </div>
-        -->
+        */}
       </section>
-      <!-- About Section -->
+      {/* About Section */}
       <section class="animate">
         <article class="text-justify">
           <p>
-            Issu d’une formation solide en <strong>ingénierie informatique</strong> (<strong>UTBM</strong>), je me suis <strong>spécialisé</strong> dans le <strong>Data Engineering</strong> et l’<strong>architecture des systèmes d’information</strong>.
-          </p>          
-          <p>Fort de plusieurs
-            expériences dans des <strong>environnements exigeants</strong> 
-            de <strong>grandes entreprises</strong> telles que <strong>France Télévisions</strong>,
-            <strong>LVMH</strong>, <strong>Atos</strong> et la <strong>Banque PSA Finance</strong>, j’ai
-            <strong>piloté des projets complexes</strong> visant à <strong>optimiser l’ingestion, le
-            traitement et l’analyse de données massives</strong>.
+            Issu d’une formation solide en
+            <strong>ingénierie informatique</strong> (<strong>UTBM</strong>), je me suis
+            <strong>spécialisé</strong> dans le <strong>Data Engineering</strong> et
+            l’<strong>architecture des systèmes d’information</strong>.
           </p>
-          <p>Mon <strong>expertise</strong> s’appuie sur la <strong>maîtrise d’outils et technologies 
-          variés</strong> tels qu'<strong>Apache Spark</strong>, <strong>Python</strong>, <strong>Hadoop</strong> et
-          <strong>Docker</strong> pour concevoir des pipelines de données performants, ainsi que sur des
-          <strong>plateformes Cloud</strong> (notamment <strong>Google Cloud Platform</strong>) pour
-          mettre en place des architectures scalables et sécurisées. J’ai également développé des 
-          <strong>compétences pointues</strong> en implémentation d’architectures Lakehouse 
-          (<strong>Delta Lake</strong>) et en <strong>orchestration de processus</strong>
-          (<strong>Terraform</strong>, <strong>Cloud Composer</strong>, <strong>Dataform</strong>) afin
-          de garantir la fluidité et la robustesse des solutions déployées.</p>
           <p>
-          En complément, j’ai <strong>assumé des responsabilités de Tech Lead</strong>, <strong>pilotant
-          des équipes</strong> en mode <strong>Agile (SCRUM)</strong> pour <strong>assurer la
-
-          coordination</strong> entre les <strong>exigences métiers</strong> et les <strong>contraintes
-          techniques</strong>, et <strong>démontrer une approche pragmatique</strong> dans la
-          <strong>résolution de problématiques stratégiques</strong>, de la <strong>migration vers
-          le cloud</strong> à l’<strong>optimisation des coûts et des performances</strong>.</p>          
-          <p>Ce <strong>parcours</strong> me permet aujourd’hui d’apporter une vision complète et
-          structurée des enjeux data, combinant <strong>expertise technique</strong>,          
-          <strong>gestion de projet</strong> et <strong>architecture d’entreprise</strong>, pour
-          concevoir et déployer des solutions de données innovantes et fiables.</p>
+            Fort de plusieurs expériences dans des
+            <strong>environnements exigeants</strong> de <strong>grandes entreprises</strong> telles
+            que <strong>France Télévisions</strong>, <strong>LVMH</strong>, <strong>Atos</strong> et la
+            <strong>Banque PSA Finance</strong>, j’ai <strong>piloté des projets
+            complexes</strong> visant à <strong>optimiser l’ingestion, le traitement et
+            l’analyse de données massives</strong>.
+          </p>
+          <p>
+            Mon <strong>expertise</strong> s’appuie sur la <strong>maîtrise d’outils et
+            technologies variés</strong> tels que <strong>Apache Spark</strong>,
+            <strong>Python</strong>, <strong>Hadoop</strong> et <strong>Docker</strong> pour concevoir
+            des pipelines de données performants, ainsi que sur des
+            <strong>plateformes Cloud</strong> (notamment <strong>Google Cloud
+            Platform</strong>) pour mettre en place des architectures scalables et sécurisées.
+            J’ai également développé des <strong>compétences pointues</strong> en
+            implémentation d’architectures Lakehouse (<strong>Delta Lake</strong>) et en
+            <strong>orchestration de processus</strong> (<strong>Terraform</strong>,
+            <strong>Cloud Composer</strong>, <strong>Dataform</strong>) afin de garantir la
+            fluidité et la robustesse des solutions déployées.
+          </p>
+          <p>
+            En complément, j’ai
+            <strong>assumé des responsabilités de Tech Lead</strong>,
+            <strong>pilotant des équipes</strong> en mode <strong>Agile (SCRUM)</strong> pour
+            <strong>assurer la coordination</strong> entre les <strong>exigences
+            métiers</strong> et les <strong>contraintes techniques</strong>, et
+            <strong>démontrer une approche pragmatique</strong> dans la
+            <strong>résolution de problématiques stratégiques</strong>, de la
+            <strong>migration vers le cloud</strong> à l’<strong>optimisation des coûts et
+            des performances</strong>.
+          </p>
+          <p>
+            Ce <strong>parcours</strong> me permet aujourd’hui d’apporter une vision complète
+            et structurée des enjeux data, combinant <strong>expertise
+            technique</strong>, <strong>gestion de projet</strong> et
+            <strong>architecture d’entreprise</strong>, pour concevoir et déployer des
+            solutions de données innovantes et fiables.
+          </p>
         </article>
       </section>
 
-      <!-- Blog Preview Section -->
+      {/* Blog Preview Section */}
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
             <p class="font-semibold text-black dark:text-white">
               Articles récents
             </p>
-            <a href="/blog" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">              
+            <a
+              href="/blog"
+              class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
+            >
+              <span
+                class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend"
+              >
                 Tous les articles
               </span>
             </a>
@@ -193,22 +249,27 @@ const stack = [
           <ul class="space-y-4">
             {posts.map((post) => (
               <li>
-                <ArrowCard entry={post}/>
+                <ArrowCard entry={post} />
               </li>
-             ))}
+            ))}
           </ul>
         </div>
-     </section>
+      </section>
 
-      <!-- Project Preview Section -->
+      {/* Project Preview Section */}
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
-           <p class="font-semibold text-black dark:text-white">
+            <p class="font-semibold text-black dark:text-white">
               Projets récents
             </p>
-            <a href="/projects" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-             <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+            <a
+              href="/projects"
+              class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
+            >
+              <span
+                class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend"
+              >
                 Tous les projets
               </span>
             </a>
@@ -223,32 +284,42 @@ const stack = [
         </div>
       </section>
 
-      <!-- Contact Section -->
+      {/* Contact Section */}
       <section class="animate">
         <div>
-          <p class="font-semibold text-black dark:text-white">            
+          <p class="font-semibold text-black dark:text-white">
             Restons en contact
           </p>
-          <p>            
-            Vous pouvez me contacter par email ou sur les réseaux sociaux.
-          </p>
+          <p>Vous pouvez me contacter par email ou sur les réseaux sociaux.</p>
           <div class="grid grid-cols-4 gap-y-2 mt-4 auto-cols-min">
-            {SOCIALS.map(social => (
+            {SOCIALS.map((social) => (
               <div class="col-span-1 flex items-center gap-1">
-                <span class="whitespace-nowrap truncate">
-                  {social.NAME}
-                </span>
+                <span class="whitespace-nowrap truncate">{social.NAME}</span>
               </div>
               <div class="col-span-3 truncate">
-                <a href={social.HREF} target="_blank" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-                  <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+                <a
+                  href={social.HREF}
+                  target="_blank"
+                  class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
+                >
+                  <span
+                    class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend"
+                  >
                     {social.TEXT}
                   </span>
                 </a>
               </div>
             ))}
+          </div>
         </div>
       </section>
     </div>
   </div>
 </PageLayout>
+
+<script>
+  const themeButton = document.getElementById("main-theme-button");
+  themeButton?.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+  });
+</script>
