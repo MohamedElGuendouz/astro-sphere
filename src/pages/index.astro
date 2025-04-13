@@ -322,10 +322,12 @@ const stack = [
   const greeting = document.getElementById("greeting");
 
   function updateGreeting() {
-    if (document.documentElement.classList.contains("dark")) {
-      greeting.textContent = "Bonsoir";
-    } else {
-      greeting.textContent = "Bonjour";
+    if (greeting) { // Check if greeting exists
+      if (document.documentElement.classList.contains("dark")) {
+        greeting.textContent = "Bonsoir";
+      } else {
+        greeting.textContent = "Bonjour";
+      }
     }
   }
 
