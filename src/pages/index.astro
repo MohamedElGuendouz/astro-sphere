@@ -152,7 +152,6 @@ const stack = [
     <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
       {/* Tech Stack Section */}
       <section class="animate">
-        {/*
         <div class="space-y-4">
           <p class="font-semibold text-black dark:text-white">
             Built with
@@ -175,7 +174,6 @@ const stack = [
             </a>
           </div>
         </div>
-        */}
       </section>
       {/* About Section */}
       <section class="animate">
@@ -331,10 +329,15 @@ const stack = [
     }
   }
 
-  updateGreeting(); // Call on page load
+  updateGreeting();
 
-  themeButton?.addEventListener("click", () => {
-    document.documentElement.classList.toggle("dark");
-    updateGreeting(); // Call on theme change
-  });
+  if (themeButton) {
+    themeButton.addEventListener("click", () => {
+      const headerThemeButton = document.getElementById('header-theme-button');
+      if (headerThemeButton) {
+        headerThemeButton.click();
+      }
+      updateGreeting();
+    });
+  }
 </script>
