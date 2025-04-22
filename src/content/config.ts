@@ -7,6 +7,8 @@ const work = defineCollection({
     role: z.string(),
     dateStart: z.coerce.date(),
     dateEnd: z.union([z.coerce.date(), z.string()]),
+    projectUrl: z.string(),
+    projectTitle: z.string(),
   }),
 })
 
