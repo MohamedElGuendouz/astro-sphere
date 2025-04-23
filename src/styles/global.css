@@ -69,6 +69,7 @@ header.scrolled {
 
 article {
   @apply prose dark:prose-invert max-w-full pb-12;
+  text-align: justify;
 }
 
 .page-heading {
@@ -101,11 +102,7 @@ article {
   transform: translateY(0);
 }
 
-article img {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  display: block;
-  margin: 0 auto;
+article img { @apply rounded-lg;
 }
 
 /**
