@@ -3,8 +3,8 @@ company: "CIDCO – Rimouski, Canada"
 role: "Stagiaire Data Scientist"
 dateStart: "03/01/2018"
 dateEnd: "06/01/2018"
-projectUrl: /projects/cidco
-projectTitle: "Optimisation de la trajectoire d'une sonde marine autonome"
+projectUrls: [/projects/cidco]
+projectTitles: ["Optimisation de la trajectoire d'une sonde marine autonome"]
 ---
 
 Mars 2018 – Juin 2018

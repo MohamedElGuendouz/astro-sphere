@@ -61,14 +61,18 @@ function formatWorkDate(input: Date | string) {
             <article class="prose dark:prose-invert">
               <entry.Content />
             </article>
-            <div>
+
+            {entry.data.projectUrls && (
+              <div class="flex flex-wrap gap-y-2">
+                {entry.data.projectUrls.map((projectUrl: string, i: number) => (
                 <a
-                href={entry.data.projectUrl}
-                class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
+                  href={projectUrl}
+                  class="py-2 px-4 mr-2 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
                 >
-                {entry.data.projectTitle}
+                  {entry.data.projectTitles[i]}
                 </a>
-            </div>
+              ))}
+              </div>)}
           </li>
         ))
       }

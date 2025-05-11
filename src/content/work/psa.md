@@ -3,8 +3,8 @@ company: "Banque PSA Finance – Sochaux, France"
 role: "Data Scientist / Data Engineer"
 dateStart: "10/01/2018"
 dateEnd: "10/01/2021"
-projectUrl: /projects/banque-psa-finance
-projectTitle: "Classification des environnements applicatifs"
+projectUrls: [/projects/banque-psa-finance]
+projectTitles: ["Classification des environnements applicatifs"]
 ---
 
 Classification des environnements applicatifs
