@@ -7,11 +7,16 @@ projectUrls: [/projects/ref-users,/projects/vcu-2-0]
 projectTitles: ["Référentiel utilisateur", "Vue client unifiée 2.0"]
 ---
 
-Déploiement d'une architecture data cloud pour le ciblage personnalisé dans le cadre des JO 2024.
-*   Conception d'un pipeline de données scalable sur GCP (Spark, Delta Lake, Cloud Composer)
-*   Infrastructure as code avec Terraform
-*   Automatisation des traitements, réduction des coûts d'exploitation
-*   Encadrement technique d'une équipe de 8 consultants en méthodologie Scrum
-*   Réalisation de POCs pour valider la scalabilité et la robustesse de l'architecture
+*   Référentiel Utilisateur : Création et mise en place du référentiel utilisateur, optimisant la gestion des données utilisateurs.
 
-Stack technique : GCP , Spark ,GCP, Spark, Delta Lake, Terraform, Cloud Composer, IAM, Pub/Sub
+*   DPaaS : Développement de solutions Data Processing as a Service (DPaaS) via Cloud Functions, Dataproc, et PySpark pour le traitement en temps réel de grandes quantités de données.
+
+*   Conception de pipeline de données : Mise en place d'un pipeline de données pour l’alimentation du référentiel en utilisant Spark, Delta Lake, et Cloud Composer.
+
+*   Infrastructure Automatisée : Déploiement de Terraform pour automatiser et scaler l’infrastructure cloud.
+
+*   Encadrement technique : Supervision d'une équipe de 8 consultants en méthodologie Scrum, favorisant la collaboration et la livraison rapide.
+
+*   Réalisation de POCs : Conception de Proofs of Concept pour valider la scalabilité et la robustesse de l'architecture mise en place.
+
+**Stack technique** : GCP, PySpark, Delta Lake, Terraform, Cloud Composer, IAM, Pub/Sub, Cloud Functions, Dataproc.
