@@ -3,8 +3,8 @@ company: France Télévisions – Paris, France
 role: Data Engineer Lead
 dateStart: "12/01/2022"
 dateEnd: "Aujourd'hui"
-projectUrls: [/projects/france-televisions]
-projectTitles: ["Référentiel utilisateur & Vue client unifiée 2.0"]
+projectUrls: [/projects/ref-users,/projects/vcu-2-0]
+projectTitles: ["Référentiel utilisateur", "Vue client unifiée 2.0"]
 ---
 
 Déploiement d'une architecture data cloud pour le ciblage personnalisé dans le cadre des JO 2024.
