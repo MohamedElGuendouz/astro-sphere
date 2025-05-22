@@ -4,9 +4,6 @@ date: 2024-09-23
 summary: "Apprenez à supprimer efficacement et en toute fiabilité des données dans les tables Delta à l’aide de différentes méthodes, avec des exemples pratiques et les bonnes pratiques à suivre."
 tags: ["Delta Lake", "Data Engineering"]
 ---
-
-# Suppression de données dans les tables Delta : Guide complet
-
 Delta Lake offre des mécanismes puissants et fiables pour supprimer des données dans les tables Delta, tout en garantissant la cohérence et l’intégrité des données. Cet article présente les différentes méthodes de suppression disponibles (SQL et API Delta), avec des exemples concrets et des recommandations.
 
 ## Méthodes de suppression de données

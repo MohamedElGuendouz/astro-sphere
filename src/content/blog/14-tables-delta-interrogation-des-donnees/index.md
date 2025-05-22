@@ -4,9 +4,6 @@ date: 2024-10-07
 summary: "Maîtrisez l’interrogation des tables Delta grâce à ce guide complet : SQL, API Delta, time travel, bonnes pratiques et optimisation des performances."
 tags: ["Delta Lake", "Data Engineering", "Data Analysis"]
 ---
-
-# Interroger des tables Delta : Guide complet
-
 Les tables Delta offrent un moyen robuste et performant de gérer et d’interroger vos données dans un data lake. Ce guide couvre les différentes méthodes d’interrogation, ainsi que les bonnes pratiques pour exploiter pleinement vos données.
 
 ## Méthodes d’interrogation des tables Delta

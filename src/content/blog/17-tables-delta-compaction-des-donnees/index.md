@@ -4,9 +4,6 @@ date: 2024-12-05
 summary: "Un guide complet sur la data compaction (OPTIMIZE) dans les Delta Tables, couvrant ses avantages, son fonctionnement, les bonnes pratiques et le débogage."
 tags: ["Delta Lake", "Data Engineering"]
 ---
-
-# Delta Tables : Maîtriser la Data Compaction pour des performances optimales
-
 Dans le monde du big data, une gestion efficace des données est cruciale. Grâce à ses propriétés ACID et à ses optimisations de performance, Delta Lake constitue une base robuste. Une de ses fonctionnalités clés pour maintenir des performances optimales est la **data compaction**, aussi appelée opération `OPTIMIZE`. Cet article explore en profondeur la data compaction dans les Delta Tables, et fournit un guide complet pour les data engineers et les architectes.
 
 ## Qu’est-ce que la Data Compaction et pourquoi est-ce important ?

@@ -4,9 +4,6 @@ date: 2024-09-15
 summary: "Maîtrisez l’art de mettre à jour les tables Delta avec ce guide complet destiné aux data engineers. Découvrez les différentes méthodes, bonnes pratiques et techniques d’optimisation."
 tags: ["Delta Lake", "Data Engineering"]
 ---
-
-# Mise à jour des tables Delta : Guide complet
-
 Les tables Delta offrent des mécanismes robustes pour la mise à jour des données tout en garantissant les propriétés ACID. Cet article explore les différentes méthodes de mise à jour des tables Delta, ainsi que les bonnes pratiques et techniques d’optimisation.
 
 ## Méthodes de mise à jour des tables Delta

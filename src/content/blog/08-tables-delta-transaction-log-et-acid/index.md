@@ -4,30 +4,23 @@ date: 2024-07-30
 summary: "Une exploration technique des journaux de transactions des tables Delta, détaillant leur structure, leur rôle dans la garantie des propriétés ACID, le contrôle de la concurrence et les implications sur les performances."
 tags: ["Delta Lake", "Data Engineering"]
 ---
+Delta Lake a révolutionné les architectures de data lake en introduisant une fiabilité et des performances comparables à celles des bases de données traditionnelles. Au cœur de cette transformation se trouve le **journal de transactions**, un composant crucial qui garantit les propriétés **ACID** et permet des fonctionnalités avancées telles que le *time travel*. Cet article propose une exploration approfondie du fonctionnement interne des journaux de transactions des tables Delta, destinée aux data engineers et architectes cherchant une compréhension complète de cette technologie.
 
+## La structure du journal de transactions
 
-Plongée dans les journaux de transactions des tables Delta et les propriétés ACID
+Le journal de transactions dans Delta Lake — souvent appelé répertoire `_delta_log` dans le stockage d’une table Delta — est un ensemble ordonné de fichiers JSON. Chaque fichier JSON représente un **commit**, un changement atomique unique sur les données ou les métadonnées de la table. Ces commits sont numérotés séquentiellement (`0.json`, `1.json`, etc.).
 
-Delta Lake a révolutionné les architectures de data lake en introduisant une fiabilité et des performances comparables à celles des bases de données traditionnelles. Au cœur de cette transformation se trouve le journal de transactions, un composant crucial qui garantit les propriétés ACID et permet des fonctionnalités avancées telles que le time travel. Cet article propose une exploration approfondie du fonctionnement interne des journaux de transactions des tables Delta, destinée aux data engineers et architectes cherchant une compréhension complète de cette technologie.
+Dans chaque fichier JSON, on trouve un tableau d’actions représentant les opérations effectuées :
 
-La structure du journal de transactions
+- `add` : ajoute un nouveau fichier de données.
+- `remove` : supprime un fichier (après un `UPDATE`, `DELETE`, etc.).
+- `metadata` : met à jour le schéma, les colonnes de partition, etc.
+- `protocol` : spécifie la version minimale requise pour lire/écrire.
+- `commitInfo` : métadonnées du commit (horodatage, utilisateur...).
 
-Le journal de transactions dans Delta Lake, souvent appelé répertoire _delta_log au sein de l'emplacement de stockage d'une table Delta, est un ensemble ordonné de fichiers JSON. Chaque fichier JSON représente un commit, un changement atomique unique sur les données ou les métadonnées de la table. Ces commits sont numérotés séquentiellement, en commençant par 0.json, 1.json, et ainsi de suite.
+### Exemple simplifié (`0.json`) :
 
-Dans chaque fichier JSON, on trouve un tableau d'actions, représentant des opérations spécifiques effectuées dans ce commit. Ces actions peuvent inclure :
-
-add : Ajoute un nouveau fichier de données à la table.
-
-remove : Supprime un fichier de données de la table (par exemple, suite à une mise à jour ou une suppression).
-
-metadata : Met à jour les métadonnées de la table (par exemple, le schéma, le partitionnement).
-
-protocol : Spécifie la version du protocole Delta Lake requise pour lire ou écrire dans la table.
-
-commitInfo : Contient des informations sur le commit lui-même (par exemple, horodatage, utilisateur).
-
-Voici un exemple simplifié d'une entrée de journal de transactions (0.json) :
-
+```json
 {
   "commitInfo": {
     "timestamp": 1678886400000,
@@ -39,73 +32,74 @@ Voici un exemple simplifié d'une entrée de journal de transactions (0.json) :
     "minWriterVersion": 2
   },
   "metadata": {
-    "schemaString": "{"type":"struct","fields":[{"name":"id","type":"integer","nullable":false,"metadata":{}},{"name":"value","type":"string","nullable":true,"metadata":{}}]}",
+    "schemaString": "{\"type\":\"struct\",\"fields\":[{\"name\":\"id\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}},{\"name\":\"value\",\"type\":\"string\",\"nullable\":true,\"metadata\":{}}]}",
     "partitionColumns": [],
     "configuration": {},
     "createdTime": 1678886400000
   }
 }
+```
 
 Ce commit initial représente la création d'une table Delta avec un schéma simple. Les commits suivants refléteront les ajouts de données, les mises à jour et autres modifications.
 
-Garantie des propriétés ACID
+## Garantie des propriétés ACID
 
-Le journal de transactions joue un rôle essentiel dans l'application des propriétés ACID qui garantissent la fiabilité des données :
+Le journal de transactions est fondamental pour assurer les propriétés **ACID** :
 
-Atomicité
+### Atomicité
 
-Chaque transaction est traitée comme une unité indivisible : soit elle est entièrement appliquée, soit elle ne l’est pas.
+Chaque transaction est indivisible : elle réussit ou elle échoue entièrement.
 
-Mécanisme : Si une écriture échoue, aucun commit n’est écrit. Les lecteurs ne voient que des transactions complètes.
+> *Mécanisme* : si une écriture échoue, aucun commit n’est écrit. Les lecteurs ne voient que des transactions complètes.
 
-Cohérence :
+### Cohérence
 
-Une transaction amène les données d’un état valide à un autre, selon les règles définies par les métadonnées de la table (schéma, partitions, etc).
+Chaque transaction amène la table d’un état valide à un autre, en respectant les règles du schéma.
 
-Mécanisme : Un commit doit respecter les contraintes de cohérence du schéma. Toute tentative invalide échoue.
+> *Mécanisme* : un commit invalide est rejeté automatiquement.
 
-Isolation
+### Isolation
 
-Les transactions concurrentes n’interfèrent pas entre elles.
+Les transactions concurrentes ne s’interfèrent pas.
 
-Mécanisme : Delta Lake utilise le contrôle de concurrence optimiste : les conflits sont détectés avant validation.
+> *Mécanisme* : Delta Lake utilise le **contrôle de concurrence optimiste**. En cas de conflit, un seul commit passe, les autres sont rejetés (à retenter).
 
-Exemple : Si deux utilisateurs modifient les mêmes données, un seul commit réussira, l’autre devra être retenté.
+### Durabilité
 
-Durabilité
+Une fois le commit écrit, il est permanent, même en cas de crash.
 
-Une fois qu’un commit est écrit dans le journal, il est permanent, même en cas de panne.
+> *Mécanisme* : le journal est stocké de façon persistante (S3, Azure Blob, etc.) et chaque fichier est immuable.
 
-Mécanisme : Le journal est durablement stocké (S3, Azure Blob, etc.) et chaque commit est immuable.
+## Time Travel et versioning des données
 
-Time Travel et versioning des données
+Grâce au journal :
 
-Grâce à son journal, Delta Lake permet :
+- **Audit** : vous pouvez retracer l’historique complet.
+- **Reproductibilité** : relancer une analyse à une version précise.
+- **Correction** : revenir à une version antérieure si besoin.
 
-Audit : retracer l’historique des changements.
+### Exemple PySpark :
 
-Reproductibilité : relancer des calculs à une version précise.
-
-Correction : revenir à une version antérieure.
-
-Exemple en PySpark :
-
+```python
 version_df = spark.read.format("delta").option("versionAsOf", 2).load("/path/to/delta_table")
+```
 
-Performances et optimisation
+## Performances et optimisation
 
-Les journaux de transactions offrent robustesse mais peuvent ralentir les lectures ou écritures intensives. Pour y remédier, Delta Lake propose :
+Le journal de transactions apporte robustesse, mais peut introduire une surcharge. Delta Lake propose plusieurs optimisations :
 
-Checkpointing : snapshots réguliers du journal en fichiers .checkpoint.parquet.
+- **Checkpointing** : snapshots réguliers du journal en `.checkpoint.parquet`.
+- **Compaction** : la commande `OPTIMIZE` fusionne les petits fichiers.
+- **Data Skipping** : statistiques (min/max, bloom filters) pour ignorer les fichiers non pertinents.
 
-Compaction : la commande OPTIMIZE réduit le nombre de petits fichiers.
+## Comparaison rapide avec Iceberg et Hudi
 
-Data Skipping : grâce aux statistiques stockées dans le journal (min/max, bloom filters).
+| Moteur     | Points clés |
+|------------|-------------|
+| **Iceberg** | Utilise des *manifests* pour suivre les snapshots. Très adapté au branching et à la gestion avancée de versions. |
+| **Hudi**    | Gère inserts/updates avec deux modes : *Copy-on-Write* et *Merge-on-Read*. |
+| **Delta Lake** | Privilégie la simplicité, une forte intégration Spark et des garanties ACID strictes. |
 
-Comparaison rapide avec Iceberg et Hudi
+---
 
-Iceberg : utilise des fichiers manifest pour suivre les snapshots. Plus adapté au branching et à la gestion fine de version.
-
-Hudi : optimise les opérations d’insert/update avec différents modes (Copy-on-Write, Merge-on-Read).
-
-Delta Lake : mise sur la simplicité d’usage, l’intégration Spark native et des garanties ACID solides.
+En maîtrisant les **journaux de transactions Delta Lake**, vous accédez à un niveau de contrôle, de traçabilité et de performance qui rapproche les data lakes des bases de données transactionnelles traditionnelles.

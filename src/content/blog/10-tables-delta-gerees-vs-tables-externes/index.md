@@ -4,9 +4,6 @@ date: 2024-08-09
 summary: "Comprenez les différences entre les tables gérées et externes dans Delta Lake, leurs implications, cas d’usage, et comment choisir le bon type pour votre data lake."
 tags: ["Delta Lake", "Data Engineering", "Data Architecture"]
 ---
-
-# Tables gérées vs. Tables externes dans Delta Lake : Guide complet
-
 Delta Lake, construit au-dessus des data lakes, offre un cadre fiable et robuste pour la gestion des données. L’un des choix essentiels à faire concerne le type de table : **gérée** ou **externe**. Cet article explore les différences entre ces types de tables, leurs implications, cas d’usage et comment faire le bon choix selon vos besoins.
 
 ## Qu’est-ce qu’une table gérée ou externe ?

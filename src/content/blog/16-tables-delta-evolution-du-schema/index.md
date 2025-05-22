@@ -4,9 +4,6 @@ date: 2024-11-29
 summary: Apprenez à gérer les évolutions de schéma dans vos Delta Tables grâce à ce guide complet sur le schema evolution.
 tags: [Delta Lake, Data Engineering, Data Architecture]
 ---
-
-# Maîtriser le Schema Evolution dans les Delta Tables
-
 Dans le monde dynamique du Data Engineering, les formats et besoins en données évoluent constamment. Historiquement, gérer les changements de schéma dans les data lakes était un processus complexe et sujet aux erreurs, nécessitant souvent une migration manuelle des données et impactant les applications en aval. La fonctionnalité de **schema evolution** de Delta Lake simplifie grandement cela, en vous permettant d’adapter vos tables aux nouveaux besoins sans intervention manuelle. Cet article vous guide à travers toutes les notions clés du schema evolution dans les Delta Tables, pour vous permettre de gérer efficacement les changements de schéma dans vos data pipelines.
 
 ## Comprendre le Schema Evolution

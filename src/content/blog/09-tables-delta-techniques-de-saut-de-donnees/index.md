@@ -4,9 +4,6 @@ date: 2024-08-02
 summary: "Exploration approfondie des techniques de data skipping dans les tables Delta, montrant comment elles améliorent les performances des requêtes en filtrant intelligemment les données non pertinentes."
 tags: ["Delta Lake", "Data Engineering"]
 ---
-
-# Maîtriser le Data Skipping dans les tables Delta : Guide complet
-
 Dans l’univers du big data, où les volumes atteignent fréquemment plusieurs téraoctets voire pétaoctets, les performances des requêtes sont essentielles. Delta Lake, couche de stockage robuste basée sur Apache Spark, utilise des techniques avancées de *data skipping* pour réduire drastiquement le volume de données scanné lors des requêtes, améliorant ainsi les performances et réduisant les coûts. Cet article propose une analyse détaillée du fonctionnement et de l’optimisation de ces techniques.
 
 ## La puissance du Data Skipping : pourquoi c’est important

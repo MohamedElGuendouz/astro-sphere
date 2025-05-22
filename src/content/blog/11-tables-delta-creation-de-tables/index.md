@@ -4,9 +4,6 @@ date: 2024-08-20
 summary: "Apprenez à créer efficacement des tables Delta grâce à ce guide complet couvrant les différentes méthodes, configurations et bonnes pratiques."
 tags: ["Delta Lake", "Data Engineering", "PySpark", "Scala"]
 ---
-
-# Créer des tables Delta : Guide complet
-
 Les tables Delta sont la base d’un data lake fiable et performant. Ce guide couvre les différentes méthodes de création de tables Delta, leurs configurations possibles, ainsi que les bonnes pratiques à adopter.
 
 ## Méthodes pour créer une table Delta

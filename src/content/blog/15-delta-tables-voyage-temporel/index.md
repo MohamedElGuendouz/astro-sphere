@@ -4,8 +4,6 @@ date: 2024-10-14
 summary: "Découvrez la fonctionnalité Time Travel de Delta Lake pour l'audit des données, la reproductibilité des expériences et les rollbacks fluides, avec des exemples pratiques et des bonnes pratiques."
 tags: ["Delta Lake", "Data Engineering", "Auditing"]
 ---
-# Delta Tables : Révéler la puissance du Time Travel
-
 Dans le domaine dynamique du Data Engineering, la capacité à accéder à des données historiques et à les analyser est primordiale. La fonctionnalité Time Travel de Delta Lake vous permet de parcourir l’évolution de vos données, offrant un mécanisme puissant pour l’audit, la reproductibilité des expériences et les rollbacks sans effort. Cet article explore les subtilités de Time Travel, et vous apporte les connaissances et compétences pratiques pour en exploiter tout le potentiel.
 
 ## Comprendre le Time Travel : une machine à remonter les données

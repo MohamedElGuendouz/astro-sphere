@@ -4,9 +4,6 @@ date: 2025-01-09
 summary: "Découvrez des cas d’usage concrets des Delta Tables en traitement batch et streaming, avec des exemples pratiques et du code."
 tags: ["Delta Lake", "Data Engineering"]
 ---
-
-# Delta Tables : Cas d’usage en traitement batch et streaming
-
 Grâce à leurs propriétés ACID et leur support natif du batch comme du streaming, les Delta Tables offrent une solution polyvalente pour de nombreux scénarios de traitement de données. Cet article explore des cas d’usage pratiques dans les deux contextes, illustrés par du code et des exemples concrets.
 
 ## Cas d’usage en traitement batch
