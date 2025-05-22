@@ -1,6 +1,6 @@
 ---
 title: "Plongée dans les journaux de transactions des tables Delta et les propriétés ACID"
-date: 2024-07-26
+date: 2024-07-30
 summary: "Une exploration technique des journaux de transactions des tables Delta, détaillant leur structure, leur rôle dans la garantie des propriétés ACID, le contrôle de la concurrence et les implications sur les performances."
 tags: ["Delta Lake", "Data Engineering"]
 ---

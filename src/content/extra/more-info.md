@@ -13,7 +13,7 @@ title: "More Info"
 
 *   Langages & développement : Python, Java, SQL, C++, Git, Docker, Airflow, Spark
 *   Cloud et DataOps : GCP (BigQuery, Dataproc, GCS, Pub/Sub, IAM), Terraform, Hive, Kafka, Ranger
-*   Ingénierie des données & BI : Dataform, Talend, Pentaho, Power BI, Oracle
+*   Data Engineering & BI : Dataform, Talend, Pentaho, Power BI, Oracle
 *   Méthodologies : Agile Scrum, cadrage fonctionnel, gestion d'incidents, estimation de charge
 
 
