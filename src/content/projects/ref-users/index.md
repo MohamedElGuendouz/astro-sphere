@@ -1,7 +1,7 @@
 ---
 title: "Référentiel utilisateur"
 description: "Conception et déploiement d’une architecture data cloud sur GCP pour la personnalisation avancée des parcours utilisateurs, dans le cadre des initiatives stratégiques liées aux JO 2024."
-date: 2024-01-01
+date: 2025-04-01
 summary: "Refonte complète du traitement des données utilisateur chez France Télévisions : création d’un référentiel structuré, automatisé et interopérable pour répondre aux enjeux CRM et aux besoins de ciblage stratégique."
 tags: ["GCP", "Delta Lake", "Infrastructure as Code", "Airflow", "PySpark", "Data Engineering", "Data Architecture"]
 ---

@@ -6,8 +6,6 @@ dateEnd: "06/01/2018"
 projectUrls: [/projects/cidco]
 projectTitles: ["Optimisation de la trajectoire d'une sonde marine autonome"]
 ---
-
-Mars 2018 – Juin 2018
 Projet R&D sur l'optimisation de la trajectoire d'une sonde marine autonome en conditions difficiles.
 *   Développement de scripts embarqués en C++ pour traitement temps réel
 *   Déploiement sur Raspberry Pi et tests fonctionnels
