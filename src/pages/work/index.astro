@@ -6,7 +6,6 @@ import BottomLayout from "@layouts/BottomLayout.astro"
 import { WORK } from "@consts"
 
 const collection = await getCollection("work")
-
 const extras = await getCollection("extra")
 
 const renderedExtras = await Promise.all(
@@ -15,7 +14,6 @@ const renderedExtras = await Promise.all(
     return { ...item, Content }
   })
 )
-
 
 collection.sort((a, b) => new Date(b.data.dateStart).getTime() - new Date(a.data.dateStart).getTime())
 
@@ -40,15 +38,23 @@ function formatWorkDate(input: Date | string) {
 
 <PageLayout title={WORK.TITLE} description={WORK.DESCRIPTION}>
   <TopLayout>
-    <div class="animate page-heading">
+    {renderedExtras.map((entry, index) => (
+      <article class={`prose dark:prose-invert ${index !== 0 ? "mt-12" : ""}`}>
+        <entry.Content />
+      </article>
+    ))}
+
+    <div class="animate page-heading mt-16">
       {WORK.TITLE}
     </div>
   </TopLayout>
+
   <BottomLayout>
     <ul>
-      { 
-        work.map((entry) => (
-          <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0">
+      {work.map((entry, index) => {
+        const isLast = index === work.length - 1
+        return (
+          <li class={`animate ${!isLast ? "border-b border-black/10 dark:border-white/25" : ""} mt-4 pb-8 ${index === 0 ? "mt-0 pt-0" : ""}`}>
             <div class="text-sm uppercase mb-4">
               {formatWorkDate(entry.data.dateStart)} - {formatWorkDate(entry.data.dateEnd)}
             </div>
@@ -58,30 +64,25 @@ function formatWorkDate(input: Date | string) {
             <div class="text-sm font-semibold">
               {entry.data.role}
             </div>
-            <article class="prose dark:prose-invert">
+            <article class="prose dark:prose-invert mt-4">
               <entry.Content />
             </article>
 
             {entry.data.projectUrls && (
-              <div class="flex flex-wrap gap-y-2">
+              <div class="flex flex-wrap gap-2 mt-4">
                 {entry.data.projectUrls.map((projectUrl: string, i: number) => (
-                <a
-                  href={projectUrl}
-                  class="py-2 px-4 mr-2 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
-                >
-                  {entry.data.projectTitles[i]}
-                </a>
-              ))}
-              </div>)}
+                  <a
+                    href={projectUrl}
+                    class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
+                  >
+                    {entry.data.projectTitles[i]}
+                  </a>
+                ))}
+              </div>
+            )}
           </li>
-        ))
-      }
+        )
+      })}
     </ul>
-    {renderedExtras.map((entry) => (
-      <article class="prose dark:prose-invert mt-12">
-        <entry.Content />
-      </article>
-    ))}    
-    
   </BottomLayout>
 </PageLayout>
