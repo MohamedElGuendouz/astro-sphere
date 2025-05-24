@@ -1,7 +1,7 @@
 ---
 title: "Optimisation de la trajectoire d'une sonde marine autonome"
 description: "Projet R&D sur l'optimisation de la trajectoire d'une sonde marine autonome en conditions difficiles."
-date: 2024-01-01
+date: 2018-06-01
 summary: "Un bref résumé du projet CIDCO."
 tags: ["Data Science", "Data Engineering", "Data Architecture"]
 ---

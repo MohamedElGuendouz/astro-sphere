@@ -1,7 +1,7 @@
 ---
 title: "Migration Oracle vers GCP pour Data Warehouse Haute Performance"
 description: "Migration d'un entrepôt de données Oracle vers GCP pour répondre à des enjeux de scalabilité et de maintenabilité."
-date: 2024-01-01
+date: 2022-12-01
 summary: "Un bref résumé du projet Céline – LVMH."
 tags: ["Data Engineering", "Cloud Computing"]
 ---
