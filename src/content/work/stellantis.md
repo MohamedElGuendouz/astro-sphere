@@ -2,7 +2,7 @@
 company: "Stellantis – Paris, France"
 role: "Data Engineer Cloud"
 dateStart: "10/01/2021"
-dateEnd: "10/01/2022"
+dateEnd: "03/01/2022"
 projectUrls: ["/projects/stellantis"]
 projectTitles: ["Cotation véhicule LLD : création d'un outil d'aide à la décision"]
 ---
