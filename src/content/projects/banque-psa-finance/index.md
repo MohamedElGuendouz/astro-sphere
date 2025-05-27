@@ -1,7 +1,7 @@
 ---
 title: "Classification des environnements applicatifs par machine learning semi-supervisé"
 description: "Classification des environnements applicatifs"
-date: 2021-10-01
+date: 2019-10-01
 summary: "Mise en place d’un moteur de classification semi-supervisé pour plus de 200 environnements applicatifs, combinant règles métiers et NLP, avec intégration dans le référentiel d’architecture TOGAF de Banque PSA Finance."
 tags: ["Data Science", "Data Engineering", "Data Architecture", "Machine Learning", "Python"]
 ---

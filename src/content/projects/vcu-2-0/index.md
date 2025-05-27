@@ -1,7 +1,7 @@
 ---
 title: "Vue client unifiée 2.0"
 description: "Révolutionner le Traitement de Données : Le Passage à une Architecture Data Processing as a Service (DPaaS) sur GCP pour France Télévisions, dans le cadre des initiatives stratégiques liées aux JO 2024."
-date: 2025-06-01
+date: 2024-01-01
 summary: "Refonte complète du système de ciblage chez France Télévisions : migration d'un outil PHP limité vers une solution scalable sur GCP, avec un traitement parallèle des données en temps réel et une gestion automatisée des clusters Dataproc."
 tags: ["GCP", "Dataproc", "Cloud Functions", "Data Engineering", "PySpark", "Data Processing", "Google Cloud Storage", "Architecture Cloud", "Automation", "Scaling"]
 ---

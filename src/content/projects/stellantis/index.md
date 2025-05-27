@@ -1,7 +1,7 @@
 ---
 title: "Cotation véhicule LLD : un outil d'aide à la décision performant"
 description: "Création d'une plateforme d'estimation de la valeur des véhicules en LLD, utilisée pour la vente et les campagnes marketing."
-date: 2022-11-01
+date: 2021-10-01
 summary: "Développement d’une plateforme de cotation LLD multi-pays, basée sur Spark, pour optimiser la revente de véhicules et améliorer les marges commerciales de Stellantis."
 tags: ["On-Premise", "Spark", "Java", "Data Engineering", "Data Architecture"]
 ---
