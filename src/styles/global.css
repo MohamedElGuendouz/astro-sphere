@@ -163,3 +163,11 @@ article img { @apply rounded-lg;
 .copy-svg {
   @apply w-full aspect-square text-white opacity-70 hover:opacity-90;
 }
+
+/* Adjust emoji size for mobile */
+@media (max-width: 768px) {
+  #main-theme-button {
+    width: 64px; /* size-16 */
+    height: 64px; /* size-16 */
+  }
+}
