@@ -167,7 +167,11 @@ article img { @apply rounded-lg;
 /* Adjust emoji size for mobile */
 @media (max-width: 768px) {
   #main-theme-button {
-    width: 64px; /* size-16 */
-    height: 64px; /* size-16 */
+    width: 80px; /* size-20 */
+ height: 80px; /* size-20 */
+ margin: 16px; /* m-4 */
+  }
+ #planetcont {
+ top: 10%;
   }
 }
